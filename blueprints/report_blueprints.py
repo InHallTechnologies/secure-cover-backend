@@ -4,6 +4,7 @@ from constants.admin_uids import admin_uid
 import pandas as pd
 import numpy as np
 from io import BytesIO
+import math
 
 report_blueprint = Blueprint('reporting_blueprint',__name__, url_prefix="/reporting")
 
@@ -36,6 +37,8 @@ def download_call_logs():
             new_list = []
             for log in call_list:
                 log['advisorName'] = users[uid]['name']
+                if log["callDurationInSeconds"]:
+                    log['callDurationInSeconds'] = abs(int(log["callDurationInSeconds"]))
                 new_list.append(log)
 
             data = data + new_list
