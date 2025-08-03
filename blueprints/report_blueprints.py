@@ -37,7 +37,7 @@ def download_call_logs():
             new_list = []
             for log in call_list:
                 log['advisorName'] = users[uid]['name']
-                if log["callDurationInSeconds"]:
+                if "callDurationInSeconds" in log:
                     log['callDurationInSeconds'] = abs(int(log["callDurationInSeconds"]))
                 new_list.append(log)
 
